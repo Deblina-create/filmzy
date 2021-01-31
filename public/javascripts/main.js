@@ -1,4 +1,18 @@
-$(document).ready(function() {
+$(document).ready(function(e) {
+    $("#userSignInSignUp").on("click", function(e){
+      console.log("Clicked");
+      let message = "";
+      const password = $("#password").val();
+      const confirmPassword = $("#confirmPassword").val();
+      const mode = $("#hidMode").val();
+      if(mode === "Sign up"){
+        if(!validatePassword(password, confirmPassword)){
+          message = "Passwords do not match";
+          e.preventDefault();
+        }
+        $("#errorMessage").html(message);
+      }
+    });
     $("#myCarousel").on("slide.bs.carousel", function(e) {
       var $e = $(e.relatedTarget);
       var idx = $e.index();
@@ -22,3 +36,7 @@ $(document).ready(function() {
       }
     });
   });
+
+  function validatePassword(password, confirmPassword){
+    return password === confirmPassword;
+  }

@@ -8,7 +8,7 @@ const movieSchema = new mongoose.Schema({
     plot: {
         type: String
     },
-    genre: {
+    genreIds: {
         type: [String],
         required: true
     },

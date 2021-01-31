@@ -59,3 +59,62 @@
       visibility: visible;
     }
   }
+  body{
+      background-color: black;
+  }
+  .nav-link{
+    color: cyan;
+    font-weight: 600;
+
+  }
+  .navbar-brand{
+    color: cyan;
+    font-weight: 600;
+
+  }
+  .cyan{
+    background-color: cyan;
+    color: darkblue;
+    font-weight: 600;
+  }
+  .form-control{
+    background-color: black;
+    color: cyan;
+    font-weight: 600;
+  }
+  .text-center{
+
+    color: cyan;
+  }
+  .start{
+    background-color: black;
+    margin-left: 6rem;
+    padding: 0%;
+    
+  }
+  .card-body{
+    color: cyan;
+    font-weight: 600;
+    
+  }
+  .img-fluid{
+     
+      z-index: 2000;
+      width: 250px;
+      height: 400px;
+      margin-bottom: 8px;
+      
+      transform: translate(3%,3%) scale(1); 
+      box-shadow:  1px 1px 10px rgb(48, 71, 71), 
+              -1px -1px 10px rgb(48, 71, 71);            
+              
+  }
+  .iconColor{
+    color: cyan;
+  
+    height: 30px;
+    width: 30px;
+ }
+ .sliderbtn{
+     margin: -15px;
+ }

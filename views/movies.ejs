@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie - add/edit/delete movie</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <title>Movies - add/edit/delete</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <form action="/movies/search" method="POST">
+                    <input required type="text" value="<%= searchResult.title %>" name="inputSearchTitle" id="inputSearchTitle">
+                    <button id="searchMovie" name="searchMovie" type="submit" class="btn btn-primary" >Search</button>
+                </form>
+            </div>
+            <div class="row">
+                <h2><%= info.mode %></h2>
+                <form action="<%= info.action %>" method="POST" style="display: <%= info.mode === "Add" || info.mode === "Edit" ? "block" : "none" %>;">
+                    <div class="form-group">
+                        <label for="title">Email</label>
+                        <input required value="<%= movie.title %>" type="text" name="title" id="title" class="form-control">
+                    </div>
+                    <input type="hidden" name="hidGenres" id="hidGenres" value="<%= movie.genreIds %>">
+                    <input type="hidden" name="hidYear" id="hidYear" value="<%= movie.year %>">
+                    <input type="hidden" name="hidRuntime" id="hidRuntime" value="<%= movie.runtime %>">
+                    <input type="hidden" name="hidPlot" id="hidPlot" value="<%= movie.plot %>">
+                    <input type="hidden" name="hidPosterUrl" id="hidPosterUrl" value="<%= movie.posterUrl %>">
+                    <img src="<%= movie.posterUrl %>" alt="<%= movie.title %>" style="width: 100px; height: 100px;">
+                    <div class="form-group">
+                        <label for="movieUrl">Url</label>
+                        <input required name="movieUrl" id="movieUrl" type="text" class="form-control" value="<%= movie.movieUrl %>"></input>
+                    </div>
+                    <a href="/" class="btn btn-secondary">Cancel</a>
+                    <button id="userSignInSignUp" type="submit" class="btn btn-primary" >Save</button>
+                    
+                    <input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>">
+                </form>
+                <% if(info.mode === "Edit") { %>
+                    <form action="/movies/<%= movie.id %>/?_method=DELETE" method="POST" class="d-inline">
+                        <button id="deleteMovie" type="submit" class="btn btn-primary" >Delete</button>
+                    </form>
+                <% } %>
+                <label id="errorMessage">
+                    <% if(error && error.message){ %>
+                        <%= error.message %>
+                    <% } %>
+                </label>
+            </div>
+        </div>
+        <script src="/javascripts/main.js"></script>
+    </body>
 </html>

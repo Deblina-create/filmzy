@@ -12,6 +12,10 @@ const movieSchema = new mongoose.Schema({
         type: [String],
         required: true
     },
+    movieUrl: {
+        type: String,
+        required: true
+    },
     posterUrl: {
         type: String,
         required: true
@@ -20,37 +24,9 @@ const movieSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    releaseDate: {
-        type: Date,
-        required: true
-    },
     runtime: {
-        type: Number,
-        required: true
-    },
-    rated: {
-        type: String
-    },
-    actors: {
-        type: [String]
-    },
-    imdbId: {
         type: String,
         required: true
-    },
-    createdBy: {
-        type: String
-    },
-    createdOn: {
-        type: Date,
-        default: Date.now
-    },
-    lastModifiedBy: {
-        type: String
-    },
-    lastModifiedOn: {
-        type: Date,
-        default: Date.now
     },
 });
 

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
+const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -14,6 +15,7 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(methodOverride('_method'));
 
 app.use(logger('dev'));
 app.use(express.json());

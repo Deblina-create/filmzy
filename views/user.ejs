@@ -6,36 +6,79 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <title>User - add/edit user</title>
+    <style>
+
+        body{
+            background-color: black;
+            color: cyan;
+        }
+        .loginContainer{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin-top: 7rem;
+        }
+        .input-field .inputStyle{
+            
+                margin-top: 20px;
+                padding: 20px;
+                font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 35px;
+            color: cyan;
+            background: black;
+            box-shadow: 5px 5px 10px #202020, 
+                        -5px -5px 10px #2c2c2c;
+            outline: none;
+
+            }
+            .buttonMovies{
+                background-color: cyan;
+                height: 40px;
+                width:80px;
+                border-radius: 30px;
+            }
+            .userSp{
+                margin-top: 30px;
+            }
+
+
+    </style>
 </head>
 <body>
+    <div class="loginContainer">
     <h1><%= info.mode %></h1>
     <form action="/user" method="POST">
         <div class="form-group">
-            <label for="email">Email</label>
-            <input required value="<%= user.email %>" type="text" name="email" id="email" class="form-control">
+           
+            <div class="input-field"><input required value="<%= user.email %>" type="text" placeholder="Email"name="email" id="email" class="form-control inputStyle"></div>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
-            <input name="password" id="password" type="password" class="form-control" value="<%= user.password %>"></input>
+            
+            <div class="input-field"><input name="password" id="password" type="password" placeholder="Password"class="form-control inputStyle" value="<%= user.password %>"></input></div
         </div>
         <% if (info.mode == "Sign up") { %>
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input required type="password" name="confirmPassword" id="confirmPassword" class="form-control">
+                
+                <div class="input-field"><input required type="password" placeholder="confirm Password"name="confirmPassword" id="confirmPassword" class="form-control inputStyle"></div>
             </div>
         <% } %>
 
         
         <a href="/" class="btn btn-secondary">Cancel</a>
-        <button id="userSignInSignUp" type="submit" class="btn btn-primary" ><%= info.mode %></button>
-        <input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>">
+        <button id="userSignInSignUp" type="submit" class="btn btn-primary buttonMovies" ><%= info.mode %></button>
+        <div class="input-field"><input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>"></div>
     </form>
-    <span>Don't have an account. <a id="createAccountLink" href="/user/signup/" >Sign up</a></span>
+    <span class="userSp">Don't have an account? <a id="createAccountLink" href="/user/signup/" >Sign up</a></span>
     <label id="errorMessage">
         <% if(error && error.message){ %>
             <%= error.message %>
         <% } %>
     </label>
+</div>
     
     <script src="/javascripts/main.js"></script>
 </body>

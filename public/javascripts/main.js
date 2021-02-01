@@ -52,7 +52,7 @@ $(document).ready(function(e) {
     $("#" + selector).on("slide.bs.carousel", function(e) {
       var $e = $(e.relatedTarget);
       var idx = $e.index();
-      var itemsPerSlide = $("#" + selector + " .carousel-item").length - 1;
+      var itemsPerSlide = $("#" + selector + " .carousel-item").length -1;
       var totalItems = $("#" + selector + " .carousel-item").length;
   
       if (idx >= totalItems - (itemsPerSlide - 1)) {
@@ -72,3 +72,14 @@ $(document).ready(function(e) {
       }
     });
   }
+  $(function() {
+    $(window).on("scroll", function() {
+        if($(window).scrollTop() > 50) {
+            $(".navbar").addClass("activeNav");
+        } else {
+            //remove the background property so it comes transparent again (defined in your css)
+           $(".navbar").removeClass("activeNav");
+        }
+    });
+});
+  

@@ -49,6 +49,12 @@
 body {
   background-color: black; }
 
+header {
+  padding: 50px; }
+  header li {
+    padding: 10px;
+    margin-left: 5px; }
+
 .nav-link {
   color: cyan;
   font-weight: 600; }
@@ -94,5 +100,8 @@ body {
 
 .sliderbtn {
   margin: -15px; }
+
+.activeNav {
+  background-color: #0d7a6c; }
 
 /*# sourceMappingURL=style.css.map */

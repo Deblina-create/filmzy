@@ -17,26 +17,58 @@ $(document).ready(function(e) {
       var $e = $(e.relatedTarget);
       var idx = $e.index();
       var itemsPerSlide = 3;
-      var totalItems = $(".carousel-item").length;
+      var totalItems = $("#myCarousel .carousel-item").length;
   
       if (idx >= totalItems - (itemsPerSlide - 1)) {
         var it = itemsPerSlide - (totalItems - idx);
         for (var i = 0; i < it; i++) {
           // append slides to end
           if (e.direction == "left") {
-            $(".carousel-item")
+            $("#myCarousel .carousel-item")
               .eq(i)
-              .appendTo(".carousel-inner");
+              .appendTo("#myCarousel .carousel-inner");
           } else {
-            $(".carousel-item")
+            $("#myCarousel .carousel-item")
               .eq(0)
-              .appendTo($(this).find(".carousel-inner"));
+              .appendTo($(this).find("#myCarousel .carousel-inner"));
           }
         }
       }
     });
+
+    let genreWiseMovies = JSON.parse($("#hidGenreWiseMovies").val());
+    for(let i=0; i < genreWiseMovies.length; i++){
+      //console.log(genreWiseMovies);
+      bindCarouselEvents(genreWiseMovies[i].genre.name + "Carousel");
+    }
   });
 
   function validatePassword(password, confirmPassword){
     return password === confirmPassword;
+  }
+
+  function bindCarouselEvents(selector){
+    console.log(selector);
+    $("#" + selector).on("slide.bs.carousel", function(e) {
+      var $e = $(e.relatedTarget);
+      var idx = $e.index();
+      var itemsPerSlide = $("#" + selector + " .carousel-item").length - 1;
+      var totalItems = $("#" + selector + " .carousel-item").length;
+  
+      if (idx >= totalItems - (itemsPerSlide - 1)) {
+        var it = itemsPerSlide - (totalItems - idx);
+        for (var i = 0; i < it; i++) {
+          // append slides to end
+          if (e.direction == "left") {
+            $("#" + selector + " .carousel-item")
+              .eq(i)
+              .appendTo("#" + selector + " .carousel-inner");
+          } else {
+            $("#" + selector +  " .carousel-item")
+              .eq(0)
+              .appendTo($(this).find("#" + selector + " .carousel-inner"));
+          }
+        }
+      }
+    });
   }

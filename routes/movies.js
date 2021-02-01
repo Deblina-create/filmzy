@@ -99,7 +99,8 @@ router.post("/:id", async (req, res, next) => {
       runtime: req.body.hidRuntime,
       plot: req.body.hidPlot,
       posterUrl: req.body.hidPosterUrl,
-      movieUrl: req.body.movieUrl
+      movieUrl: req.body.movieUrl,
+      createdOn: movie.createdOn
     });
     //console.log(movie);
     movie.save().then(() => {

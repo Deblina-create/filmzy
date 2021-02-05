@@ -44,6 +44,9 @@
             .userSp{
                 margin-top: 30px;
             }
+            .cancel{
+                border-radius: 30px;
+            }
 
 
     </style>
@@ -54,11 +57,11 @@
     <form action="/user" method="POST">
         <div class="form-group">
            
-            <div class="input-field"><input required value="<%= user.email %>" type="text" placeholder="Email"name="email" id="email" class="form-control inputStyle"></div>
+            <div class="input-field"><input required value="<%= user.email %>" type="text" pattern="[^ @]*@[^ @]*" placeholder="Email"name="email" id="email" class="form-control inputStyle"></div>
         </div>
         <div class="form-group">
             
-            <div class="input-field"><input name="password" id="password" type="password" placeholder="Password"class="form-control inputStyle" value="<%= user.password %>"></input></div
+            <div class="input-field"><input name="password" id="password" type="password" placeholder="Password"class="form-control inputStyle" value="<%= user.password %>"></input></div>
         </div>
         <% if (info.mode == "Sign up") { %>
             <div class="form-group">
@@ -68,9 +71,10 @@
         <% } %>
 
         
-        <a href="/" class="btn btn-secondary">Cancel</a>
+        <a href="/" class="btn btn-secondary cancel">Cancel</a>
         <button id="userSignInSignUp" type="submit" class="btn btn-primary buttonMovies" ><%= info.mode %></button>
-        <div class="input-field"><input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>"></div>
+        <input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>">
+        <input name="hidRedirectRoute" id="hidRedirectRoute" type="hidden" value="<%= redirectRoute %>">
     </form>
     <span class="userSp">Don't have an account? <a id="createAccountLink" href="/user/signup/" >Sign up</a></span>
     <label id="errorMessage">

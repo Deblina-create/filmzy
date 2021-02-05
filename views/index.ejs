@@ -26,24 +26,18 @@
                       
                     </li>
                     <li class="nav-item">
+                      <a class="nav-link" href="/movies" >Add/Delete</a>
+                    </li>
+                   
+                    <% if(!user){ %>
+                    <li class="nav-item">
                       <a class="nav-link" href="/user/signin">Login</a>
                     </li>
+                    <% } else { %>
                     <li class="nav-item">
-                      <a class="nav-link" href="/movies">Add/Delete</a>
+                      <a class="nav-link" href="/user/signout">Logout</a>
                     </li>
-                    <li class="nav-item dropdown">
-       
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
-                        generes
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <% for(let i=0; i < genres.length; i++){ %>
-                          <a class="dropdown-item" href="<%= `#${genres[i].name}Heading` %>"><%= genres[i].name %></a>
-                        <% } %>
-                      </div>
-                    </li>
-                    
+                    <% } %>
                   </ul>
                   
                 </div>
@@ -59,12 +53,14 @@
                       <div class="carousel-inner row w-100 mx-auto">
                         <% for(let i=0; i < newReleases.length; i++){ %>
                           <div class="carousel-item col-md-4 <%= i === 0 ? 'active' : '' %>">
-                            <div class="card start">
+                            <div class="card start"  data-toggle="modal" data-target="#movieModal">
+                              <input type="hidden" value="<%= newReleases[i].movieUrl %>">
                               <img class="card-img-top img-fluid" src="<%= newReleases[i].posterUrl %>" alt="Card image cap">
                               <div class="card-body">
-                                <h4 class="card-title"><%= newReleases[i].title %></h4>
+                                
+                                <h5 class="card-title"><%= newReleases[i].title %></h5>
                                 <p class="card-text"><%= newReleases[i].plot %></p>
-                                <p class="card-text"><small class="text-muted"><%= newReleases[i].runtime %></small></p>
+                                <p class="card-text"><medium class="text-muted"><%= newReleases[i].runtime %></medium></p>
                               </div>
                             </div>
                           </div>
@@ -113,8 +109,9 @@
                     </div>
                   </div>
             </div>
-
+            
             <% for(let j=0; j < genreWiseMovies.length; j++) { %>
+              
               <div class="carousel-container">
             
                 <div class="container-fluid">
@@ -123,10 +120,11 @@
                       <div class="carousel-inner row w-100 mx-auto">
                         <% for(let i=0; i < genreWiseMovies[j].movies.length; i++){ %>
                           <div class="carousel-item col-md-4 <%= i === 0 ? 'active' : '' %>">
-                            <div class="card start">
+                            <div class="card start" data-toggle="modal" data-target="#movieModal">
+                              <input type="hidden" value="<%= genreWiseMovies[j].movies[i].movieUrl %>">
                               <img class="card-img-top img-fluid" src="<%= genreWiseMovies[j].movies[i].posterUrl %>" alt="Card image cap">
                               <div class="card-body">
-                                <h4 class="card-title"><%= genreWiseMovies[j].movies[i].title %></h4>
+                                <h5 class="card-title"><%= genreWiseMovies[j].movies[i].title %></h5>
                                 <p class="card-text"><%= genreWiseMovies[j].movies[i].plot %></p>
                                 <p class="card-text"><small class="text-muted"><%= genreWiseMovies[j].movies[i].runtime %></small></p>
                               </div>
@@ -147,8 +145,29 @@
             </div>
             <% } %>
             <input id="hidGenreWiseMovies" type="hidden" value="<%= JSON.stringify(genreWiseMovies) %>">
+            
+            <% if(pageNumber * pageSize < genres.length) { %>
+                <% pageNumber += 1 %>
+              <div  style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
+                  <a class="loadMore"  href="<%= `/?pageNumber=${pageNumber}` %>">Load More...</a>
+              </div>
+            <% } %>
           </section>
         </main>
+      </div>
+      <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            
+              
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+           
+            <div class="modal-body">
+            </div>
+          </div>
+        </div>
       </div>
       <script src="/javascripts/main.js">
     

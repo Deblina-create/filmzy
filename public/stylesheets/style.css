@@ -85,6 +85,9 @@ header {
   color: cyan;
   font-weight: 600; }
 
+.card-text {
+  color: cadetblue; }
+
 .img-fluid {
   z-index: 2000;
   width: 250px;
@@ -103,5 +106,28 @@ header {
 
 .activeNav {
   background-color: #0d7a6c; }
+
+.modal-content {
+  background-color: black;
+  padding: 0%;
+  margin: 0%; }
+  .modal-content .modal-header {
+    border: none; }
+  .modal-content button {
+    color: cyan;
+    z-index: 100;
+    size: 80px; }
+
+.modal-body {
+  background-color: black;
+  border: none; }
+
+.loadMore {
+  padding: 10px;
+  width: 130px;
+  height: 90px;
+  background-color: cyan;
+  border-radius: 30px;
+  font-weight: 700; }
 
 /*# sourceMappingURL=style.css.map */

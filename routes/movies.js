@@ -6,12 +6,15 @@ const Movie = require("../models/movie");
 const Genre = require("../models/genre");
 const dbConnection = require("../db.config");
 const apiConfig = require("../api.config");
+const verifyToken = require("./middleware/userVerify");
 mongoose.connect(dbConnection, {useNewUrlParser: true, useUnifiedTopology: true});
 
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', verifyToken, (req, res) => {
+  
   res.render('movies', { searchResult: {title: ""}, movie: {}, info: {mode: "", action: "/movie"}, error: {}});
+  
 });
 
 router.post("/search", async (req, res, next) => {

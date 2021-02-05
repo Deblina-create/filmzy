@@ -105,6 +105,9 @@
     font-weight: 600;
     
   }
+  .card-text{
+    color: cadetblue;
+  }
   .img-fluid{
      
       z-index: 2000;
@@ -129,3 +132,32 @@
  .activeNav {
     background-color: rgb(13, 122, 108)
   }
+  .modal-content{
+    background-color: black;
+    
+    padding: 0%;
+    margin: 0%;
+    .modal-header{
+      border: none;
+    }
+
+    button{
+      color: cyan;
+      z-index: 100;
+      size: 80px;
+    }
+  }
+  .modal-body{
+    background-color: black;
+    border: none;
+  }
+  .loadMore{
+    padding: 10px;
+     width: 130px; 
+     height: 90px; 
+     background-color: cyan;
+      border-radius: 30px;
+      font-weight: 700;
+      
+  }
+  

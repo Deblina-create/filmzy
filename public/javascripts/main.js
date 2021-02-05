@@ -1,6 +1,6 @@
 $(document).ready(function(e) {
     $("#userSignInSignUp").on("click", function(e){
-      console.log("Clicked");
+      //console.log("Clicked");
       let message = "";
       const password = $("#password").val();
       const confirmPassword = $("#confirmPassword").val();
@@ -14,26 +14,28 @@ $(document).ready(function(e) {
       }
     });
     $("#myCarousel").on("slide.bs.carousel", function(e) {
-      var $e = $(e.relatedTarget);
-      var idx = $e.index();
-      var itemsPerSlide = 3;
-      var totalItems = $("#myCarousel .carousel-item").length;
-  
-      if (idx >= totalItems - (itemsPerSlide - 1)) {
-        var it = itemsPerSlide - (totalItems - idx);
-        for (var i = 0; i < it; i++) {
-          // append slides to end
-          if (e.direction == "left") {
-            $("#myCarousel .carousel-item")
-              .eq(i)
-              .appendTo("#myCarousel .carousel-inner");
-          } else {
-            $("#myCarousel .carousel-item")
-              .eq(0)
-              .appendTo($(this).find("#myCarousel .carousel-inner"));
-          }
+      let $e = $(e.relatedTarget);
+      let idx = $e.index();
+      let itemsPerSlide = 3;
+      let totalItems = $("#myCarousel .carousel-item").length;
+
+    if (idx >= totalItems - (itemsPerSlide - 1)) {
+      let it = itemsPerSlide - (totalItems - idx);
+      for (let i = 0; i < it; i++) {
+        // append slides to end
+        if (e.direction == "left") {
+          $("#myCarousel .carousel-item")
+            .eq(i)
+            .appendTo("#myCarousel .carousel-inner");
+        } else {
+          $("#myCarousel .carousel-item")
+            .eq(0)
+            .appendTo($(this).find("#myCarousel .carousel-inner"));
         }
       }
+    }
+  
+     
     });
 
     let genreWiseMovies = JSON.parse($("#hidGenreWiseMovies").val());
@@ -50,15 +52,15 @@ $(document).ready(function(e) {
   function bindCarouselEvents(selector){
     console.log(selector);
     $("#" + selector).on("slide.bs.carousel", function(e) {
-      var $e = $(e.relatedTarget);
-      var idx = $e.index();
-      var itemsPerSlide = $("#" + selector + " .carousel-item").length -1;
-      var totalItems = $("#" + selector + " .carousel-item").length;
+      let $e = $(e.relatedTarget);
+      let idx = $e.index();
+      let itemsPerSlide = 3;
+      let totalItems = $("#" + selector + " .carousel-item").length;
   
       if (idx >= totalItems - (itemsPerSlide - 1)) {
-        var it = itemsPerSlide - (totalItems - idx);
-        for (var i = 0; i < it; i++) {
-          // append slides to end
+        let it = itemsPerSlide - (totalItems - idx);
+        for (let i = 0; i < it; i++) {
+          
           if (e.direction == "left") {
             $("#" + selector + " .carousel-item")
               .eq(i)
@@ -77,9 +79,28 @@ $(document).ready(function(e) {
         if($(window).scrollTop() > 50) {
             $(".navbar").addClass("activeNav");
         } else {
-            //remove the background property so it comes transparent again (defined in your css)
+            
            $(".navbar").removeClass("activeNav");
         }
     });
 });
+$('#movieModal').on('shown.bs.modal', function (e) {
+  let movieUrl = $(e.relatedTarget).children("input:hidden").val();
+  let movieId = movieUrl.split("v=")[1];
+  //console.log(movieUrl);
+  //console.log(movieId);
+  let frame = document.createElement("iframe");
+  frame.setAttribute("width", "480px");
+ 
+  frame.setAttribute("height", "380px");
   
+  frame.setAttribute("src", "https://www.youtube.com/embed/" + movieId);
+  frame.setAttribute("allowfullscreen", "allowfullscreen");
+  $(".modal-body").empty();
+  $(".modal-body").append(frame);
+  $('.card.start').trigger('focus')
+});
+
+$('#movieModal').on('hidden.bs.modal', function (){
+  $(".modal-body").empty();
+});

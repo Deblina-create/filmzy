@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Oops cannot find the page you are looking for!!</title>
+
+    <style>
+        body{
+            background-color: black;
+        }
+        
+        .errorContainer{
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .error{
+            color: cyan;
+            text-align: center;
+            font-size: 300px;
+            font-style: oblique;
+
+        }
+
+        .cyan{
+            background-color: cyan;
+            padding: 10px;
+            text-align: center;
+           
+
+        }
+        .info{
+            color: rgb(178, 224, 224);
+            font-size: large;
+            margin-bottom: 20px;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="errorContainer">
+        <div class="error">404</div>
+        <div class="info">Oops cannot find the page you are looking for!!</div>
+        <div ><a class="cyan" href="/">Go Home</a></div>
+        <h1><%= message %></h1>
+        <h2><%= error.status %></h2>
+        <pre><%= error.stack %></pre>
+    </div>
+
+</body>
+</html>

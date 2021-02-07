@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <title>Movies - add/edit/delete</title>
+
+        <style>
+            body{
+                background-color: black;
+            }
+            
+            .searchContainer{
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+                
+                margin-top: 2rem;
+                
+
+            }
+            .buttonMovies{
+                background-color: cyan;
+                height: 40px;
+                width:80px;
+                border-radius: 30px;
+                
+            }
+            
+            
+            .info{
+                color: cyan;
+                text-align: center;
+            }
+            .rowInfo{
+                margin-top: 25px;
+            }
+            img{
+                height: 350px;
+                width: 350px;
+            }
+            #movieUrl{
+                margin-top: 10px;
+            }
+            .input-field .inputStyle{
+                padding: 20px;
+                font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 15px;
+            color: cyan;
+            background: black;
+            box-shadow: 5px 5px 10px #202020, 
+                        -5px -5px 10px #2c2c2c;
+            outline: none;
+
+            }
+            .cancel{
+                border-radius: 30px;
+            }
+            #deleteMovie{
+                position: absolute;
+                margin-left: -125px;
+                margin-top: -40px;
+                color: #fff;
+                background-color: #6c757d;
+                border-color: #6c757d;
+
+            }
+                
+        </style>
+    </head>
+    <body>
+        <div class="container searchContainer">
+            <div class="row">
+                <form  action="/movies/search" method="POST">
+                    <div class="input-field"> <input class="moviesInput inputStyle" required type="text" placeholder="Movie Name"value="<%= searchResult.title %>" name="inputSearchTitle" id="inputSearchTitle"></div>
+                    <button class="buttonMovies"id="searchMovie" name="searchMovie" type="submit" class="btn btn-primary" >Search</button>
+                    <a href="/" class="btn btn-secondary cancel">Cancel</a>
+                </form>
+            </div>
+            <div class="rowInfo">
+                <h2 class="info"><%= info.mode %></h2>
+                <form action="<%= info.action %>" method="POST" style="display: <%= info.mode === "Add" || info.mode === "Edit" ? "block" : "none" %>;">
+                    <div class="form-group">
+                        
+                        <div class="input-field"> <input required value="<%= movie.title %>" type="text" placeholder="movie Name" name="title" id="title" class="form-control inputStyle"> </div>
+                    </div>
+                    <input type="hidden" name="hidGenres" id="hidGenres" value="<%= movie.genreIds %>">
+                    <input type="hidden" name="hidYear" id="hidYear" value="<%= movie.year %>">
+                    <input type="hidden" name="hidRuntime" id="hidRuntime" value="<%= movie.runtime %>">
+                    <input type="hidden" name="hidPlot" id="hidPlot" value="<%= movie.plot %>">
+                    <input type="hidden" name="hidPosterUrl" id="hidPosterUrl" value="<%= movie.posterUrl %>">
+                    <img src="<%= movie.posterUrl %>" alt="<%= movie.title %>" >
+                    <div class="form-group">
+                        
+                    <div class="input-field"><input required name="movieUrl" placeholder="movie Url (YouTube)"id="movieUrl" type="text" class="form-control inputStyle" value="<%= movie.movieUrl %>"></input></div>
+                    </div>
+                    
+                    <button class="buttonMovies"id="userSignInSignUp" type="submit" class="btn btn-secondary" >Save</button>
+                    
+                    <input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>">
+                </form>
+                <% if(info.mode === "Edit") { %>
+                    <form action="/movies/<%= movie.id %>/?_method=DELETE" method="POST" >
+                        <button class="buttonMovies "id="deleteMovie" type="submit" class="btn btn-primary" >Delete</button>
+                    </form>
+                <% } %>
+                <label id="errorMessage">
+                    <% if(error && error.message){ %>
+                        <%= error.message %>
+                    <% } %>
+                </label>
+            </div>
+        </div>
+        <script src="/javascripts/main.js"></script>
+    </body>
+</html>

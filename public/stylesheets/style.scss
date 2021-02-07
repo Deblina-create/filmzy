@@ -1,0 +1,163 @@
+@media (min-width: 768px) {
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item {
+      display: block;
+    }
+  
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+      transition: none;
+    }
+  
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+  
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+      position: absolute;
+      top: 0;
+      right: -33.3333%;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+  
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+      position: relative;
+      transform: translate3d(-100%, 0, 0);
+      visibility: visible;
+    }
+  
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      display: block;
+      visibility: visible;
+    }
+  
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+      position: relative;
+      transform: translate3d(100%, 0, 0);
+      visibility: visible;
+      display: block;
+      visibility: visible;
+    }
+  }
+  body{
+      background-color: black;
+  }
+  header{
+    padding: 50px;
+    li{
+      padding: 10px;
+      margin-left: 5px;
+    }
+
+  }
+  .nav-link{
+    color: cyan;
+    font-weight: 600;
+
+  }
+  .navbar-brand{
+    color: cyan;
+    font-weight: 600;
+
+  }
+  .cyan{
+    background-color: cyan;
+    color: darkblue;
+    font-weight: 600;
+  }
+  .form-control{
+    background-color: black;
+    color: cyan;
+    font-weight: 600;
+  }
+  .text-center{
+
+    color: cyan;
+  }
+  .start{
+    background-color: black;
+    margin-left: 6rem;
+    padding: 0%;
+    
+  }
+  .card-body{
+    color: cyan;
+    font-weight: 600;
+    
+  }
+  .card-text{
+    color: cadetblue;
+  }
+  .img-fluid{
+     
+      z-index: 2000;
+      width: 250px;
+      height: 400px;
+      margin-bottom: 8px;
+      
+      transform: translate(3%,3%) scale(1); 
+      box-shadow:  1px 1px 10px rgb(48, 71, 71), 
+              -1px -1px 10px rgb(48, 71, 71);            
+              
+  }
+  .iconColor{
+    color: cyan;
+  
+    height: 30px;
+    width: 30px;
+ }
+ .sliderbtn{
+     margin: -15px;
+ }
+ .activeNav {
+    background-color: rgb(13, 122, 108)
+  }
+  .modal-content{
+    background-color: black;
+    
+    padding: 0%;
+    margin: 0%;
+    .modal-header{
+      border: none;
+    }
+
+    button{
+      color: cyan;
+      z-index: 100;
+      size: 80px;
+    }
+  }
+  .modal-body{
+    background-color: black;
+    border: none;
+  }
+  .loadMore{
+    padding: 10px;
+     width: 130px; 
+     height: 90px; 
+     background-color: cyan;
+      border-radius: 30px;
+      font-weight: 700;
+      
+  }
+  

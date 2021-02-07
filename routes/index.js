@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const genre = require("../models/genre");
 const initGenres = require("../InitData/InitialGenres");
 const initMovies = require("../InitData/InitialMovies");
+console.log(dbConnection);
 mongoose.connect(dbConnection, {useNewUrlParser: true, useUnifiedTopology: true});
 
 /* GET home page. */

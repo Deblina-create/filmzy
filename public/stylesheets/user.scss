@@ -1,0 +1,39 @@
+body{
+    background-color: black;
+    color: cyan;
+}
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+}
+.input-field .inputStyle{
+    
+        margin-top: 20px;
+        padding: 20px;
+        font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 35px;
+    color: cyan;
+    background: black;
+    box-shadow: 5px 5px 10px #202020, 
+                -5px -5px 10px #2c2c2c;
+    outline: none;
+
+    }
+    .buttonMovies{
+        background-color: cyan;
+        height: 40px;
+        width:80px;
+        border-radius: 30px;
+    }
+    .userSp{
+        margin-top: 30px;
+    }
+    .cancel{
+        border-radius: 30px;
+    }

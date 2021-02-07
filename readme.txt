@@ -14,3 +14,10 @@ Initial Setup
 - run the index page in the browser. First time, it will load some sample initial data.
 - Refresh the page (for the first time only) 
 - Enjoy using the application
+- sample .env file
+
+NODE_ENV=development
+PORT=3000
+DB_PORT = 27017
+DB_NAME = filmzydb
+SECRET_KEY=FJKL%^*#HHJKK

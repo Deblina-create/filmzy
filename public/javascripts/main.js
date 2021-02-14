@@ -1,6 +1,5 @@
 $(document).ready(function(e) {
     $("#userSignInSignUp").on("click", function(e){
-      //console.log("Clicked");
       let message = "";
       const password = $("#password").val();
       const confirmPassword = $("#confirmPassword").val();
@@ -40,7 +39,6 @@ $(document).ready(function(e) {
 
     let genreWiseMovies = JSON.parse($("#hidGenreWiseMovies").val());
     for(let i=0; i < genreWiseMovies.length; i++){
-      //console.log(genreWiseMovies);
       bindCarouselEvents(genreWiseMovies[i].genre.name + "Carousel");
     }
   });
@@ -50,7 +48,6 @@ $(document).ready(function(e) {
   }
 
   function bindCarouselEvents(selector){
-    console.log(selector);
     $("#" + selector).on("slide.bs.carousel", function(e) {
       let $e = $(e.relatedTarget);
       let idx = $e.index();
@@ -87,8 +84,6 @@ $(document).ready(function(e) {
 $('#movieModal').on('shown.bs.modal', function (e) {
   let movieUrl = $(e.relatedTarget).children("input:hidden").val();
   let movieId = movieUrl.split("v=")[1];
-  //console.log(movieUrl);
-  //console.log(movieId);
   let frame = document.createElement("iframe");
   frame.setAttribute("width", "480px");
  

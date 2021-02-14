@@ -10,14 +10,11 @@ mongoose.connect(dbConnection, {useNewUrlParser: true, useUnifiedTopology: true}
 
 /* GET users listing. */
 router.get('/signup', (req, res, next) => {
-  console.log("Sign up");
   res.render('user', { user: {}, info: {mode: "Sign up"}, error: {}, redirectRoute: ""});
   //res.render('user', { user: {email: req.body.email}, info: {mode: "Sign In"}, error: {message: "Incorrect email/password!"}});
 });
 
 router.post("/", async (req, res, next) => {
-  //console.log(req.body);
-  //console.log(res.location());
   if(req.body.hidMode === "Sign up"){
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
@@ -26,23 +23,20 @@ router.post("/", async (req, res, next) => {
       password: hashedPassword
     });
     let userInDb = await User.findOne({ email: req.body.email});
-    //console.log(userInDb);
     if(!userInDb)
     {
       user.save().then(async () => {
-        //console.log(process.env.SECRET_KEY);
         const jwtToken = await jwt.sign({user:user}, process.env.SECRET_KEY);  
         
         if(jwtToken) {
 
             const cookie = req.cookies.jwtToken;
 
-            //console.log(cookie);
+           
             if(!cookie) {
               
                 res.cookie("jwtToken", jwtToken, {maxAge:3600000, httpOnly: true} );
             }
-            //console.log(req.body.hidRedirectRoute);
             if(req.body.hidRedirectRoute)
               await res.redirect(req.body.hidRedirectRoute);
             await res.redirect("/");
@@ -60,7 +54,6 @@ router.post("/", async (req, res, next) => {
 
     if(checkedPassword)
     {
-      console.log(process.env.SECRET_KEY);
       const jwtToken = await jwt.sign({user:userInDb}, process.env.SECRET_KEY);
 
 
@@ -69,12 +62,10 @@ router.post("/", async (req, res, next) => {
 
             const cookie = req.cookies.jwtToken;
 
-            console.log(cookie);
             if(!cookie) {
               
                 res.cookie("jwtToken", jwtToken, {maxAge:3600000, httpOnly: true} );
             }
-            console.log(req.body.hidRedirectRoute);
             if(req.body.hidRedirectRoute)
               await res.redirect(req.body.hidRedirectRoute);
             await res.redirect("/");

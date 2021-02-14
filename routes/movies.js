@@ -38,13 +38,11 @@ router.post("/search", async (req, res, next) => {
     .then(async (response) => {
       // handle success
       if(response && response.data){
-        //console.log(response.data);
         const genres = response.data.Genre.split(", ");
         const genreIds = [];
         for(let i=0; i < genres.length; i++){
           let x = genres[i];
           let genre = await Genre.findOne({ name: x});
-          //console.log(genre);
           if(genre)
             genreIds.push(genre._id);
           else{
@@ -72,7 +70,6 @@ router.post("/search", async (req, res, next) => {
     .then(function () {
       // always executed
     });
-    //console.log(x);
     
   }
 });
@@ -105,7 +102,6 @@ router.post("/:id", async (req, res, next) => {
       movieUrl: req.body.movieUrl,
       createdOn: movie.createdOn
     });
-    //console.log(movie);
     movie.save().then(() => {
       res.redirect("/");
     });
@@ -114,7 +110,6 @@ router.post("/:id", async (req, res, next) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  console.log(req.params.id);
   Movie.findByIdAndDelete(req.params.id).then(() => {
     res.redirect("/");
   });

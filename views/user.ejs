@@ -34,6 +34,7 @@
         <input name="hidMode" id="hidMode" type="hidden" value="<%= info.mode %>">
         <input name="hidRedirectRoute" id="hidRedirectRoute" type="hidden" value="<%= redirectRoute %>">
     </form>
+    <span class="userSp"> <a id="resetPasswordLink" href="/user/reset" >Forgot Password?</a></span>
     <span class="userSp">Don't have an account? <a id="createAccountLink" href="/user/signup/" >Sign up</a></span>
     <label id="errorMessage">
         <% if(error && error.message){ %>

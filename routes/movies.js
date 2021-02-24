@@ -13,7 +13,17 @@ mongoose.connect(dbConnection, {useNewUrlParser: true, useUnifiedTopology: true}
 /* GET home page. */
 router.get('/', verifyToken, (req, res) => {
   
-  res.render('movies', { searchResult: {title: ""}, movie: {}, info: {mode: "", action: "/movie"}, error: {}});
+  res.render('movies', { 
+    searchResult: {
+      title: ""
+    }, 
+    movie: {}, 
+    info: {
+      mode: "", 
+      action: "/movie"}, 
+      error: {}
+    }
+  );
   
 });
 

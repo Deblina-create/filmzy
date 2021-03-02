@@ -149,23 +149,23 @@ router.get("/reset", (req, res)=> {
 router.post("/reset",  async (req, res)=>{
 
 
-  // Vi ska först användare finns i database 
+  // check if user available in db 
 
  const user =  await User.findOne({email:req.body.email})
     
-  // Vi ska hämta deras mejl adress 
+  // get email 
 
   console.log("after user found");
 
   //res.send(user.email)
 
-    //  -> token och tokenExpiration 
+    //  -> token and tokenExpiration 
 
     if (user) {
     const token = await crypto.randomBytes(32);
     console.log("after random token");
 
-       //   spara i database 
+       //   save in database 
 
        user.token= token.toString("hex");
        user.tokenExpiration = Date.now() + 3600000;

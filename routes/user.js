@@ -103,7 +103,6 @@ router.post("/", async (req, res, next) => {
     {
       const jwtToken = await jwt.sign({user:userInDb}, process.env.SECRET_KEY);
 
-
         
         if(jwtToken) {
 
@@ -119,7 +118,7 @@ router.post("/", async (req, res, next) => {
         }   
     }
     else{
-      res.render('user', { user: {email: req.body.email}, info: {mode: "Sign In"}, error: {message: "Incorrect email/password!"}});
+      res.render('user', { user: {email: req.body.email}, info: {mode: "Sign In"}, error: {message: "Incorrect email/password!"}, redirectRoute: req.body.hidRedirectRoute});
     }
   }
 });
